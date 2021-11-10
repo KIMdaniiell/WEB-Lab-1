@@ -1,0 +1,9 @@
+body #result_table {
+    color: #aab6c3;
+    border-spacing: 15px;
+    text-align: center;
+}
+
+#result_table th{
+    width: 5%;
+}

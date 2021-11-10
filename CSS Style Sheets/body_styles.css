@@ -1,0 +1,22 @@
+body {
+    background-color: #22272e;
+    color: #aab6c3;
+    font-weight: lighter;
+    font-family: "Times New Roman", serif;
+    font-weight: lighter;
+}
+
+body #content {
+    margin: 3% 7%;
+    width: 70%;
+}
+
+#left_part {
+    width: 50%;
+}
+
+#right\=part {
+    vertical-align: top;
+}
+
+
