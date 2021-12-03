@@ -35,8 +35,9 @@ input:hover, select:hover, button:hover{
     color: darkred;
     box-shadow: 3px 2px 5px darkred;
 }
+
 .invalidInput:hover {
-    background-color: darkred;
-    color: #aab6c3;
     box-shadow: 3px 2px 5px darkred;
+    background-color: #ffdddd;
+    color: #22272e;
 }
