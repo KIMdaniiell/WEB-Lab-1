@@ -31,13 +31,15 @@ input:hover, select:hover, button:hover{
 }
 
 .invalidInput {
+    border: 2px solid darkred;
     background-color: #aab6c3;
     color: darkred;
-    box-shadow: 3px 2px 5px darkred;
+    /*box-shadow: 3px 2px 5px darkred;*/
 }
 
 .invalidInput:hover {
-    box-shadow: 3px 2px 5px darkred;
+    border: 2px solid darkred;
     background-color: #ffdddd;
     color: #22272e;
+    /*box-shadow: 3px 2px 5px darkred;*/
 }
