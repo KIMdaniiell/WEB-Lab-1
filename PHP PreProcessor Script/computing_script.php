@@ -46,26 +46,32 @@
         return false;
     }
 
-    $start = microtime(true);
+
     date_default_timezone_set('Europe/Moscow');
-    global $x;
+    /**global $x;
     global $y;
     global $r;
     if (isset($_POST['X']) && isset($_POST['Y']) && isset($_POST['R'])) {
         $x = trim($_POST['X']);
         $y = trim($_POST['Y']);
         $r = trim($_POST['R']);
-    }
-    $current_time = date('G:i:s', time());
-    $result = "";
-    if (xIsValid($x)&&yIsValid($y)&&rIsValid($r)){
-        if (isHit($x,$y,$r)){
+    }*/
+        $x = $_POST['X'];
+        $y = $_POST['Y'];
+        $r = $_POST['R'];
+
+    $result = "Ошибка ввода";
+    if (xIsValid($x)&&yIsValid($y)&&rIsValid($r)) {
+        if (isHit($x, $y, $r)) {
             $result = "Попадание";
         } else {
             $result = "Промах";
         }
-    } else{
-        $result = "Ошибка ввода";
     }
-    $processing_time = round((microtime(true) - $start) * 10000, 6);
+
+    $processing_time = round((microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]), 6);
+    $current_time = date('G:i:s', time());
+
+    $response = array('x'=>$x,'y'=>$y,'r'=>$r,'result'=>$result,'ctime'=>$current_time,'etime'=>$processing_time);
+    echo json_encode($response);
 ?>
