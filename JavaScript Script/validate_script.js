@@ -60,28 +60,28 @@ function unmarkField(field) {
         o.innerHTML = "");
 }
 
-function validateX(filed) {
+function validateX(field) {
     /** Выполняет валидацию поля X.
      * x ∈ { -4, -3, -2, -1, 0, 1, 2, 3, 4}
      * @param xSel HTML элемент - т.е. фоле формы.
      * **/
-    let x = filed.value;
+    let x = field.value;
     //let reg1 = /^-?[0-4]&/;
 
     if (x === "-4" || x === "-3" || x === "-2" || x === "-1" || x === "0" || x === "1" || x === "2" || x === "3" || x === "4") {
-        unmarkField(filed);
+        unmarkField(field);
         return true;
     }
-    markField(filed);
+    markField(field);
     return false;
 }
 
-function validateY(filed) {
+function validateY(field) {
     /** Выполняет валидацию поля Y.
      * y ∈ { -3, ..., 5}
      * @param yInput HTML элемент - т.е. фоле формы.
      * **/
-    let y = filed.value;
+    let y = field.value;
 
     let reg1 = /^-?[0-2](\.\d+)?$/;
     let reg2 = /^-3(\.0+)?$/;
@@ -89,28 +89,28 @@ function validateY(filed) {
     let reg4 = /^[34](\.\d+)?$/;
 
     if (reg1.test(y) || reg2.test(y) || reg3.test(y) || reg4.test(y)) {
-        unmarkField(filed);
+        unmarkField(field);
         return true;
     }
-    markField(filed);
+    markField(field);
     return false;
 }
 
-function validateR(filed) {
+function validateR(field) {
     /** Выполняет валидацию поля R.
      * x ∈ { 1, 1.5, 2, 2.5, 3}
      * @param rSel HTML элемент - т.е. фоле формы.
      * **/
 
-    let r = filed.value;
+    let r = field.value;
     //let reg1 = /^-?[1-3]&/;
     //let reg2 = /^-?[1-2]\.5&/;
 
     if (r === "1" || r === "1.5" || r === "2" || r === "2.5" || r === "3") {
-        unmarkField(filed);
+        unmarkField(field);
         return true;
     }
-    markField(filed);
+    markField(field);
     return false;
 }
 
