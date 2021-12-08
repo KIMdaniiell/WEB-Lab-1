@@ -84,12 +84,13 @@ function validateY(field) {
     **/
     let y = field.value;
 
-    let reg2 = /^-3(\.0+)?$/;           //  [ -3.(0) ; -3 ]
-    let reg1 = /^-?[0-2](\.\d+)?$/;     //  ( -3 ; 3 )
-    let reg4 = /^[34](\.\d+)?$/;        //  [ 3 ; 5 )
-    let reg3 = /^5(\.0+)?$/;            //  [ 5 ; 5.(0) )
+    let reg1 = /^-3(\.0+)?$/;           //  [ -3.(0) ; -3 ]
+    let reg2 = /^-?[0-2](\.\d+)?$/;     //  ( -3 ; 3 )
+    let reg3 = /^[34](\.\d+)?$/;        //  [ 3 ; 5 )
+    let reg4 = /^5(\.0+)?$/;            //  [ 5 ; 5.(0) )
+    let reg5 = /^0+$/;                  //  (0)
 
-    if (reg1.test(y) || reg2.test(y) || reg3.test(y) || reg4.test(y)) {
+    if (reg1.test(y) || reg2.test(y) || reg3.test(y) || reg4.test(y) || reg5.test(y)) {
         unmarkField(field);
         return true;
     }
@@ -135,6 +136,7 @@ function handle(x, y, r) {
 }
 
 function addRow(response) {
+
     /**
      * Добавляет в HTML таблицу данные о результате вычисления и вводные данные.
      * @param response Расспаршенный (см. handle) ассоциативный массив с данными.
@@ -142,8 +144,14 @@ function addRow(response) {
 
     let row = document.createElement('tr');
 
+    //этот участок кода нужен, для красивого отображения длинных чисел в таблице
+        let y = `${response['y']}`;
+        if (y.length>6) {
+            y = Number(`${response['y']}`).toFixed(6);
+        }
+
     row.innerHTML = `<td>${response['x']}</td>
-                    <td>${response['y']}</td>
+                    <td>` + y + `</td>
                     <td>${response['r']}</td>
                     <td>${response['result']}</td>
                     <td>${response['ctime']}</td>
