@@ -1,135 +1,139 @@
-function validate(){
+function validate() {
 
     let dataIsCorrect = true;
     let x;
     let y;
     let r;
     console.log("Валидация...");
-    console.log("\tX равен:" + x);
-    console.log("\tY равен:" + y);
-    console.log("\tR равен:" + r);
+
     Array.from(document.getElementsByClassName("formfield"))
         .forEach(node => {
                 switch (node.id) {
-                    case 'X_selection' :
-                        {let v = validateX(node);
+                    case 'X' : {
+                        let v = validateX(node);
                         dataIsCorrect = dataIsCorrect * v;
-                        console.log("\tВалидность X = "+v);
+                        console.log("\tВалидность X = " + v);
                         x = node.value;
-                        break;}
-                    case 'Y_input' :
-                        {let v = validateY(node);
+                        break;
+                    }
+                    case 'Y' : {
+                        let v = validateY(node);
                         dataIsCorrect = dataIsCorrect * v;
-                        console.log("\tВалидность Y = "+v);
+                        console.log("\tВалидность Y = " + v);
                         y = node.value;
-                        break;}
-                    case 'R_selection' :
-                        {let v = validateR(node);
+                        break;
+                    }
+                    case 'R' : {
+                        let v = validateR(node);
                         dataIsCorrect = dataIsCorrect * v;
-                        console.log("\tВалидность R = "+v);
+                        console.log("\tВалидность R = " + v);
                         r = node.value;
-                        break;}
+                        break;
+                    }
                 }
             }
         );
+    console.log("\tX равен:" + x);
+    console.log("\tY равен:" + y);
+    console.log("\tR равен:" + r);
     console.log("Результат проверки:" + dataIsCorrect);
     if (dataIsCorrect) {
         console.log("Формируется POST запрос.");
-        handle(x,y,r);
+        handle(x, y, r);
     }
     return false;
 }
 
 
-function markField (field) {
+function markField(field) {
     /** Выделяет выбранное поле как некорректно введенное  */
     field.classList.add("invalidInput");
     Array.from(field.parentElement.getElementsByClassName("error"))
         .forEach(o =>
-            o.innerHTML = "<br>*Please input correct Y value");
+            o.innerHTML = "<br>Пожалуйста, проверьте содержимое поля " + field.id + ".");
 }
 
-function unmarkField (field) {
+function unmarkField(field) {
     /** Убирает выделение (см. markField) с выбранного поля */
     field.classList.remove("invalidInput");
     Array.from(field.parentElement.getElementsByClassName("error")).forEach(o =>
         o.innerHTML = "");
 }
 
-function validateX(xSel){
+function validateX(filed) {
     /** Выполняет валидацию поля X.
      * x ∈ { -4, -3, -2, -1, 0, 1, 2, 3, 4}
      * @param xSel HTML элемент - т.е. фоле формы.
      * **/
-    let x = xSel.value;
+    let x = filed.value;
     //let reg1 = /^-?[0-4]&/;
 
-    if (x==="-4"||x==="-3"||x==="-2"||x==="-1"||x==="0"||x==="1"||x==="2"||x==="3"||x==="4"){
-        unmarkField(xSel);
+    if (x === "-4" || x === "-3" || x === "-2" || x === "-1" || x === "0" || x === "1" || x === "2" || x === "3" || x === "4") {
+        unmarkField(filed);
         return true;
     }
-    markField(xSel);
+    markField(filed);
     return false;
 }
 
-function validateY(yInput){
+function validateY(filed) {
     /** Выполняет валидацию поля Y.
      * y ∈ { -3, ..., 5}
      * @param yInput HTML элемент - т.е. фоле формы.
      * **/
-    let y = yInput.value;
+    let y = filed.value;
 
     let reg1 = /^-?[0-2](\.\d+)?$/;
     let reg2 = /^-3(\.0+)?$/;
     let reg3 = /^5(\.0+)?$/;
     let reg4 = /^[34](\.\d+)?$/;
 
-    if (reg1.test(y)||reg2.test(y)||reg3.test(y)||reg4.test(y)) {
-        unmarkField(yInput);
+    if (reg1.test(y) || reg2.test(y) || reg3.test(y) || reg4.test(y)) {
+        unmarkField(filed);
         return true;
     }
-    markField(yInput);
+    markField(filed);
     return false;
 }
 
-function validateR(rSel) {
+function validateR(filed) {
     /** Выполняет валидацию поля R.
      * x ∈ { 1, 1.5, 2, 2.5, 3}
      * @param rSel HTML элемент - т.е. фоле формы.
      * **/
 
-    let r = rSel.value;
+    let r = filed.value;
     //let reg1 = /^-?[1-3]&/;
     //let reg2 = /^-?[1-2]\.5&/;
 
-    if (r==="1"||r==="1.5"||r==="2"||r==="2.5"||r==="3"){
-        unmarkField(rSel);
+    if (r === "1" || r === "1.5" || r === "2" || r === "2.5" || r === "3") {
+        unmarkField(filed);
         return true;
     }
-    markField(rSel);
+    markField(filed);
     return false;
 }
 
-function handle(x,y,r){
+function handle(x, y, r) {
     /**
      * Формирует POST запрос и отправляет на обработку.
      * @param x,y,r Данные введенные пользователем в форму .
-    **/
+     **/
 
     let xhr = new XMLHttpRequest();
-    xhr.open('POST','../PHP%20PreProcessor%20Script/computing_script.php')
+    xhr.open('POST', '../PHP%20PreProcessor%20Script/computing_script.php')
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    xhr.onload = function (){
+    xhr.onload = function () {
         let response = JSON.parse(xhr.response);
         addRow(response);
     }
 
-    xhr.send('X='+x+'&Y='+y+'&R='+r);
+    xhr.send('X=' + x + '&Y=' + y + '&R=' + r);
     //Т.к. искользуется метод POST, данные передаются в теле запроса.
 }
 
-function addRow (response){
+function addRow(response) {
     /**
      * Добавляет в HTML таблицу данные о результате вычисления и вводные данные.
      * @param response Расспаршенный (см. handle) ассоциативный массив с данными.
