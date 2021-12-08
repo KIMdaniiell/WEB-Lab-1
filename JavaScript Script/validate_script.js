@@ -1,5 +1,4 @@
 // JQuery используется только в 1 месте. По хорошему, нужно выкинуть ее из кода
-
 function validate() {
 
     let dataIsCorrect = true;
