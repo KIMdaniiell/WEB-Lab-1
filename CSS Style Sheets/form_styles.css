@@ -43,3 +43,10 @@ input:hover, select:hover, button:hover{
     color: #22272e;
     /*box-shadow: 3px 2px 5px darkred;*/
 }
+
+.error {
+    font-size: small;
+    font-family: "Calibri Light",cursive;
+    color: #aab6c3;
+    box-sizing: border-box;
+}
