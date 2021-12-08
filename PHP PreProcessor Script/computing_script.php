@@ -72,15 +72,21 @@
     $processing_time = round((microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]), 6);
     $current_time = date('G:i:s', time());
 
-    //$response = array('x'=>$x,'y'=>$y,'r'=>$r,'result'=>$result,'ctime'=>$current_time,'etime'=>$processing_time);
-    //echo json_encode($response);
-    $response = '{
-        "x": "'.$x.'",
-        "y": "'.$y.'",
-        "r": "'.$r.'",
-        "result": "'.$result.'",
-        "ctime": "'.$current_time.'",
-        "etime": '.$processing_time.'
-    }';
-    echo $response;
+//ОКРУЛИ ДО какого нибудь знака!
+//ОКРУЛИ ДО какого нибудь знака!
+//ОКРУЛИ ДО какого нибудь знака!
+//ОКРУЛИ ДО какого нибудь знака!
+//ОКРУЛИ ДО какого нибудь знака!
+//ОКРУЛИ ДО какого нибудь знака!
+
+$response = '{
+"x": "'.$x.'",
+"y": "'.$y.'",
+"r": "'.$r.'",
+"result": "'.$result.'",
+"ctime": "'.$current_time.'",
+"etime": '.$processing_time.'
+}';
+echo $response;
+
 ?>
