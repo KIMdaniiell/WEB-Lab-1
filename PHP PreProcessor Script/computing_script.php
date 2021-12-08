@@ -27,23 +27,36 @@
         return false;
     }
 
-    function xIsValid( $x){
-        if (preg_match("/^-?[0-4]$/", $x)){
-            return true;
-        }
-        return false;
+    function xIsValid($x){
+        /** Выполняет валидацию поля X.
+         * x ∈ { -4, -3, -2, -1, 0, 1, 2, 3, 4}
+        **/
+
+        //  preg_match("/^-?[0-4]&/", $x)
+        return ($x == "-4" || $x == "-3" || $x == "-2" || $x == "-1" || $x == "0" || $x == "1" || $x == "2" || $x == "3" || $x == "4");
     }
     function yIsValid($y){
-        if (!preg_match("/^-?[0-4](\.\d+)?$/", $_POST["R"]) && !preg_match("/^-?5(\.0+)?$/", $_POST["R"])) {
-            return false;
-        }
-        return true;
+        /** Выполняет валидацию поля Y.
+         * y ∈ { -3, ..., 5}
+         **/
+
+        $reg1 = "/^-3(\.0+)?$/";        //  [ -3.(0) ; -3 ]
+        $reg2 = "/^-?[0-2](\.\d+)?$/";  //  ( -3 ; 3 )
+        $reg3 = "/^[34](\.\d+)?$/";     //  [ 3 ; 5 )
+        $reg4 = "/^5(\.0+)?$/";         //  [ 5 ; 5.(0) )
+        return (preg_match($reg1,$y)
+            ||preg_match($reg2,$y)
+            ||preg_match($reg3,$y)
+            ||preg_match($reg4,$y));
     }
     function rIsValid($r){
-        if (preg_match("/^[1-3](\\.5)?$/", $_POST["R"])) {
-            return true;
-        }
-        return false;
+        /** Выполняет валидацию поля R.
+         * x ∈ { 1, 1.5, 2, 2.5, 3}
+         **/
+
+        //preg_match("/^-?[1-3]$/", $r)
+        //preg_match("/^-?[1-2]\.5$/", $r)
+        return ($r == "1" || $r == "1.5" || $r == "2" || $r == "2.5" || $r == "3");
     }
 
 
