@@ -39,10 +39,13 @@ function yIsValid($y)
     $reg2 = "/^-?[0-2](\.\d+)?$/";  //  ( -3 ; 3 )
     $reg3 = "/^[34](\.\d+)?$/";     //  [ 3 ; 5 )
     $reg4 = "/^5(\.0+)?$/";         //  [ 5 ; 5.(0) )
+    $reg5 = "/^0+$/";         //  (0)
+
     return (preg_match($reg1, $y)
         || preg_match($reg2, $y)
         || preg_match($reg3, $y)
-        || preg_match($reg4, $y));
+        || preg_match($reg4, $y)
+        || preg_match($reg5, $y));
 }
 
 function rIsValid($r)
