@@ -13,6 +13,7 @@ body #content {
 
 #left_part {
     width: 50%;
+    vertical-align: top;
 }
 
 #right\=part {
