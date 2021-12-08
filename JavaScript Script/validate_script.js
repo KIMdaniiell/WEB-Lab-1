@@ -66,7 +66,7 @@ function validateX(field) {
      * @param xSel HTML элемент - т.е. фоле формы.
      * **/
     let x = field.value;
-    //let reg1 = /^-?[0-4]&/;
+    //let reg1 = /^-?[0-4]$/;
 
     if (x === "-4" || x === "-3" || x === "-2" || x === "-1" || x === "0" || x === "1" || x === "2" || x === "3" || x === "4") {
         unmarkField(field);
@@ -103,8 +103,8 @@ function validateR(field) {
      * **/
 
     let r = field.value;
-    //let reg1 = /^-?[1-3]&/;
-    //let reg2 = /^-?[1-2]\.5&/;
+    //let reg1 = /^-?[1-3]$/;
+    //let reg2 = /^-?[1-2]\.5$/;
 
     if (r === "1" || r === "1.5" || r === "2" || r === "2.5" || r === "3") {
         unmarkField(field);
