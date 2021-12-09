@@ -1,6 +1,7 @@
 <?php
 function isHit($x, $y, $r)
 {
+    //Из-за оссобености варианта можно не проверять нижний левый угол. В него невозможно попасть.
     return (isRightTop($x, $y, $r) || isRightBottom($x, $y, $r) || isLeftTop($x, $y, $r));
 }
 
